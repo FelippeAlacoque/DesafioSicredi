@@ -13,7 +13,7 @@ public class SessaoVotacaoConverter {
 		LocalDateTime dtFim = null;
 		
 		if(sessaoVotacaoDTO.getTempoAberturaSessao() == null)
-			dtFim = dtInicio. plusMinutes(sessaoVotacaoDTO.getTempoAberturaSessao());
+			dtFim = dtInicio. plusMinutes(sessaoVotacaoDTO.getDEFAULT_TIME());
         else
         	dtFim = dtInicio.plusMinutes(sessaoVotacaoDTO.getTempoAberturaSessao());
 

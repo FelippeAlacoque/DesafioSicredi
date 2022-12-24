@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 public class SessaoVotacaoDTO {
 
+	private final int DEFAULT_TIME = 1;
+
 	@NotNull
 	private Long idPauta;
 
@@ -33,6 +35,10 @@ public class SessaoVotacaoDTO {
 
 	public void setTempoAberturaSessao(Integer tempoAberturaSessao) {
 		this.tempoAberturaSessao = tempoAberturaSessao;
+	}
+
+	public int getDEFAULT_TIME() {
+		return DEFAULT_TIME;
 	}
 
 }
