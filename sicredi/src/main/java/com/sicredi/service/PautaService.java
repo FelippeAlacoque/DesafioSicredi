@@ -1,6 +1,7 @@
 package com.sicredi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class PautaService {
 
 	public List<Pauta> listarPautas() {
 		return pautaRepository.findAll();
+	}
+	
+	public Pauta buscarPorID(Long idPauta) {
+		Optional<Pauta> pauta = pautaRepository.findById(idPauta);
+		
+		return pauta.get();
 	}
 
 }
