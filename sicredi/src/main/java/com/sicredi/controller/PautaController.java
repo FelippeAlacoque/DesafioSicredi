@@ -22,6 +22,8 @@ import com.sicredi.event.RecursoCriadoEvent;
 import com.sicredi.model.Pauta;
 import com.sicredi.service.PautaService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/pauta")
 public class PautaController {
@@ -33,6 +35,7 @@ public class PautaController {
 	private ApplicationEventPublisher publisher;
 
 	@PostMapping
+	@ApiOperation(value = "Permite a criação de uma pauta de votação.")
 	public ResponseEntity<Pauta> salvar(@Valid @RequestBody PautaDTO pautaDTO, HttpServletResponse response) {
 		Pauta pautaSalva = pautaService.salvar(pautaDTO);
 		
@@ -42,6 +45,7 @@ public class PautaController {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "Permite listar pautas de votação.")
 	public ResponseEntity<List<Pauta>> listarPautas() {
 		List<Pauta> pautas = pautaService.listarPautas();
 		
@@ -49,6 +53,7 @@ public class PautaController {
 	}
 	
 	@GetMapping("/{idPauta}")
+	@ApiOperation(value = "Permite apurar o resultado da votação de uma pauta.")
 	public ResponseEntity<ResultadoPautaDTO> resultadoVotacao(@PathVariable Long idPauta) {
 		ResultadoPautaDTO resultado = pautaService.resultadoPauta(idPauta);
 		

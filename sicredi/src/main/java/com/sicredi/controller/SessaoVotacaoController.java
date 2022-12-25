@@ -17,6 +17,8 @@ import com.sicredi.event.RecursoCriadoEvent;
 import com.sicredi.model.SessaoVotacao;
 import com.sicredi.service.SessaoVotacaoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/sessaoVotacao")
 public class SessaoVotacaoController {
@@ -28,6 +30,7 @@ public class SessaoVotacaoController {
 	private ApplicationEventPublisher publisher;
 	
 	@PostMapping
+	@ApiOperation(value = "API para criação de nova sessão de votação.")
 	public ResponseEntity<SessaoVotacao> salvarSessao(@Valid @RequestBody SessaoVotacaoDTO sessaoDTO, HttpServletResponse response) {
 		SessaoVotacao sessaoVotacao = sessaoVotacaoService.salvarSessaoVotacao(sessaoDTO);
 

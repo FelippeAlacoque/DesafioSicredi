@@ -17,6 +17,8 @@ import com.sicredi.event.RecursoCriadoEvent;
 import com.sicredi.model.Voto;
 import com.sicredi.service.VotoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/voto")
 public class VotoController {
@@ -28,6 +30,7 @@ public class VotoController {
 	private ApplicationEventPublisher publisher;
 	
 	@PostMapping
+	@ApiOperation(value = "API para votação de pautas.")
 	public ResponseEntity<Voto> salvar(@Valid @RequestBody VotoDTO votoDTO, HttpServletResponse response) {
 		Voto votoSalvo = votoService.salvarVoto(votoDTO);
 		
