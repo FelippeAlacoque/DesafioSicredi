@@ -35,8 +35,7 @@ public class VotoService {
 			if (validarStatusSessaoVotacao(dataHoraAtual, sessaoVotacao)) {
 				throw new IllegalArgumentException("Sessão de votação já encerrada. Data/Hora de encerramento: " + utils.formataLocalDateTime(sessaoVotacao.get().getDataFim()));
 			} else {
-				Optional<Voto> voto = votoRepository.findByidAssociadoEqualsAndSessaoVotacaoIdEquals(
-						votoDTO.getIdAssociado(), votoDTO.getIdSessaoVotacao());
+				Optional<Voto> voto = votoRepository.findByidAssociadoEqualsAndSessaoVotacaoIdEquals(votoDTO.getIdAssociado(), votoDTO.getIdSessaoVotacao());
 				if (voto.isPresent()) {
 					throw new IllegalArgumentException("Voto já registrado para o associado [cógido: " + votoDTO.getIdAssociado() +"] anteriormente na sessão.");
 				} else {
@@ -46,9 +45,8 @@ public class VotoService {
 		}
 	}
 	
-	private Boolean validarStatusSessaoVotacao(LocalDateTime dataHoraAtual, Optional<SessaoVotacao> sessaoVotacao) {
-		if (sessaoVotacao.get().getDataFim().isBefore(dataHoraAtual)
-				|| sessaoVotacao.get().getDataInicio().isAfter(dataHoraAtual))
+	private Boolean validarStatusSessaoVotacao(LocalDateTime dataHoraAtual, Optional<SessaoVotacao> sessaoVotacao) {				
+		if (sessaoVotacao.get().getDataFim().isBefore(dataHoraAtual) || sessaoVotacao.get().getDataInicio().isAfter(dataHoraAtual))
 			return true;
 		else
 			return false;

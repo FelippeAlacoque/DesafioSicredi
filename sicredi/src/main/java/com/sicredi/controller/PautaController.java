@@ -10,12 +10,14 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sicredi.dto.PautaDTO;
+import com.sicredi.dto.ResultadoPautaDTO;
 import com.sicredi.event.RecursoCriadoEvent;
 import com.sicredi.model.Pauta;
 import com.sicredi.service.PautaService;
@@ -45,4 +47,12 @@ public class PautaController {
 		
 		return !pautas.isEmpty() ? ResponseEntity.ok(pautas) : ResponseEntity.notFound().build();
 	}
+	
+	@GetMapping("/{idPauta}")
+	public ResponseEntity<ResultadoPautaDTO> resultadoVotacao(@PathVariable Long idPauta) {
+		ResultadoPautaDTO resultado = pautaService.resultadoPauta(idPauta);
+		
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
+	
 }
